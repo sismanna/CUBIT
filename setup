@@ -1,0 +1,12 @@
+sele.dat	  	  inpunt file name
+celle_sel_eve.dat	  output file name for all the catalogue events
+celle_sel.dat		  output file name for the individuated cells
+1000			  number of events per cell
+100			  tolerance of the number of events per cell
+.5			  spatial increment distance
+100			  maximum number of times for looking the cell
+10.			  initial distance should be order of magnitude of the analysed area (km)
+1.5			  minimum magniotude range for the b value estimation
+.93			  threshold value for the cv
+.05			  half of the magnitude binning in the catalogue
+50			  minimum number of events for the b value estimation
