@@ -58,6 +58,7 @@ do i=1,3000000
   iflag(i)=0
 end do
 99 npt=i-1
+  print*,npt
  close(80)
 
 call magminmax(q,npt,iflag,qmintot,qmax,imax)
@@ -82,6 +83,7 @@ do ic=1,100000000   !loop for looking all the possible cells in the catalogue
 !!!! looks for the events in a cell of radius d around the imax event
   dd=0.
   call optrad(x,y,z,xr,yr,zr,iflag,npt,ntol,neve,ntry,d,delta,dd) 
+
   if(dd==0.)then
     call magminmax(q,npt,iflag,qmin,qmax,imax)
     cycle
@@ -125,7 +127,10 @@ do ic=1,100000000   !loop for looking all the possible cells in the catalogue
   call subb(qdummy,qc,qmintot,n(ke),bin,b,sb,nnp)
   
     print*,n(ke),nnp
-  if(nnp<nmin)cycle
+  if(nnp<nmin)then
+    ntot=ntot+n(ke)
+    cycle
+  end if
   
   write(70,*)ke,qc,b,sb,nnp
   
@@ -141,7 +146,7 @@ do ic=1,100000000   !loop for looking all the possible cells in the catalogue
 
 10  ntot=ntot+n(ke)
   print*,ntot,npt
-  if(npt-ntot<neve+ntol)exit !!!! if the number of events not assigned to a cell is smaller than neve-ntol the program ends
+  if(npt-ntot<neve+3*ntol)exit !!!! if the number of events not assigned to a cell is smaller than neve-ntol the program ends
 
 
 !!!!  looks for the next largest event
