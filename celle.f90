@@ -95,7 +95,12 @@ do ic=1,100000000   !loop for looking all the possible cells in the catalogue
 
 !!!! assigns all the events to the cell !!!!!
 
-  n(ke)=0
+  n(ke)=1
+  qdummy(n(ke))=q(ieve)
+  xdummy(n(ke))=x(ieve)
+  ydummy(n(ke))=y(ieve)
+  zdummy(n(ke))=z(ieve)
+  tdummy(n(ke))=to(ieve)    
   qminc=10.
   do j=1,npt
     if(iflag(j).ne.0)cycle
@@ -141,12 +146,11 @@ do ic=1,100000000   !loop for looking all the possible cells in the catalogue
     write(90,200)tdummy(i),xdummy(i),ydummy(i),zdummy(i),ke,qdummy(i)+qmintot,qc,b,sb
   end do
   print*,ke,'cell done'
-
 !ending the program
 
 10  ntot=ntot+n(ke)
   print*,ntot,npt
-  if(npt-ntot<neve+3*ntol)exit !!!! if the number of events not assigned to a cell is smaller than neve-ntol the program ends
+  if(npt-ntot<neve+ntol)exit !!!! if the number of events not assigned to a cell is smaller than neve-ntol the program ends
 
 
 !!!!  looks for the next largest event
